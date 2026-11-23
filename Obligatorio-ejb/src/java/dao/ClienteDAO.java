@@ -73,7 +73,7 @@ public class ClienteDAO {
     public boolean tieneReservas(int codigoCliente) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
-            TypedQuery query = em.createQuery(
+            TypedQuery<Long> query = em.createQuery(
                 "SELECT COUNT(r) FROM Reserva r WHERE r.cliente.codigo = :codigo", Long.class);
             query.setParameter("codigo", codigoCliente);
             return query.getSingleResult() > 0;

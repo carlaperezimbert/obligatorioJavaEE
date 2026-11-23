@@ -73,7 +73,7 @@ public class CanchaDAO {
     public boolean tieneReservas(int codigoCancha) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
-            TypedQuery query = em.createQuery(
+            TypedQuery<Long> query = em.createQuery(
                 "SELECT COUNT(r) FROM Reserva r WHERE r.cancha.codigo = :codigo", Long.class);
             query.setParameter("codigo", codigoCancha);
             return query.getSingleResult() > 0;

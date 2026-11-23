@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 public class ReservaDAO {
     /**
@@ -49,15 +50,17 @@ public class ReservaDAO {
     /**
      * Nota 3: Cuenta la cantidad de reservas registradas para una fecha dada.
      */
-    public long contarPorFecha(Date fecha) {
-        EntityManager em = JPAUtil.getEntityManager();
-        try {
-            TypedQuery query = em.createQuery(
-                "SELECT COUNT(r) FROM Reserva r WHERE r.fecha = :fecha", Long.class);
-            query.setParameter("fecha", fecha);
-            return query.getSingleResult();
-        } finally {
-            em.close();
-        }
+    public long contarPorFecha(LocalDate fecha) {
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
+        TypedQuery<Long> query = em.createQuery(
+            "SELECT COUNT(r) FROM Reserva r WHERE r.fecha = :fecha",
+            Long.class
+        );
+        query.setParameter("fecha", fecha);
+        return query.getSingleResult();
+    } finally {
+        em.close();
     }
+}
 }
