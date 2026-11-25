@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Reservas</title>
+        <style>
+            .error-message { color: red; font-size: 0.9em; }
+        </style>
+    </h:head>
+    <h:body>
+        <h1>Gestión de Reservas</h1>
+
+        <h:form id="formReserva">
+            <h:messages globalOnly="true" showDetail="false" />
+
+            <h2>Nueva Reserva</h2>
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputLabel for="fecha" value="Fecha:" />
+                <h:panelGroup>
+                    <h:inputText id="fecha" type="date" required="true"
+                                 value="#{reservaBean.fecha}">
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:message for="fecha" styleClass="error-message" />
+                </h:panelGroup>
+
+                <h:outputLabel for="turno" value="Turno:" />
+                <h:panelGroup>
+                    <h:selectOneMenu id="turno" required="true" value="#{reservaBean.turno}">
+                        <f:selectItem itemValue="1" itemLabel="1" />
+                        <f:selectItem itemValue="2" itemLabel="2" />
+                        <f:selectItem itemValue="3" itemLabel="3" />
+                        <f:selectItem itemValue="4" itemLabel="4" />
+                        <f:selectItem itemValue="5" itemLabel="5" />
+                    </h:selectOneMenu>
+                    <h:message for="turno" styleClass="error-message" />
+                </h:panelGroup>
+
+                <h:outputLabel for="cliente" value="Cliente:" />
+                <h:panelGroup>
+                    <h:selectOneMenu id="cliente" required="true"
+                                     value="#{reservaBean.clienteCodigo}">
+                        <f:selectItem itemValue="" itemLabel="-- Seleccione un cliente --" />
+                        <f:selectItems value="#{reservaBean.clientes}" var="c"
+                                       itemValue="#{c.codigo}" itemLabel="#{c.codigo} - #{c.nombre}" />
+                    </h:selectOneMenu>
+                    <h:message for="cliente" styleClass="error-message" />
+                </h:panelGroup>
+
+                <h:outputLabel for="cancha" value="Cancha:" />
+                <h:panelGroup>
+                    <h:selectOneMenu id="cancha" required="true"
+                                     value="#{reservaBean.canchaCodigo}">
+                        <f:selectItem itemValue="" itemLabel="-- Seleccione una cancha --" />
+                        <f:selectItems value="#{reservaBean.canchas}" var="c"
+                                       itemValue="#{c.codigo}"
+                                       itemLabel="#{c.codigo} - #{c.descripcion} (#{c.deporte})" />
+                    </h:selectOneMenu>
+                    <h:message for="cancha" styleClass="error-message" />
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <h:commandButton value="Registrar Reserva" action="#{reservaBean.registrar}" />
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:form>
+
+        <h:form>
+            <h2>Filtrar por rango de fechas</h2>
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputLabel for="fechaInicio" value="Desde:" />
+                <h:panelGroup>
+                    <h:inputText id="fechaInicio" type="date"
+                                 value="#{reservaBean.fechaInicio}">
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:message for="fechaInicio" styleClass="error-message" />
+                </h:panelGroup>
+                <h:outputLabel for="fechaFin" value="Hasta:" />
+                <h:panelGroup>
+                    <h:inputText id="fechaFin" type="date"
+                                 value="#{reservaBean.fechaFin}">
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:message for="fechaFin" styleClass="error-message" />
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:commandButton value="Filtrar" action="#{reservaBean.filtrarPorFechas}" />
+                    <h:commandButton value="Ver todas" action="#{reservaBean.verTodas}" />
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:form>
+
+        <h:form>
+            <h2>Reservas registradas</h2>
+            <h:dataTable value="#{reservaBean.reservas}" var="r" border="1" cellpadding="4">
+                <h:column>
+                    <f:facet name="header">Código</f:facet>
+                    #{r.codigo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Fecha</f:facet>
+                    #{r.fecha}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Turno</f:facet>
+                    #{r.turno}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Cliente</f:facet>
+                    #{r.cliente.codigo} - #{r.cliente.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Cancha</f:facet>
+                    #{r.cancha.codigo} - #{r.cancha.descripcion} (#{r.cancha.deporte})
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Acciones</f:facet>
+                    <h:commandButton value="Eliminar"
+                                     action="#{reservaBean.eliminar(r)}"
+                                     onclick="return confirm('¿Eliminar la reserva #{r.codigo}?');" />
+                </h:column>
+            </h:dataTable>
+            <p><h:commandLink value="Volver" action="index.xhtml" /></p>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Clientes</title>
+        <style>
+            .error-message { color: red; font-size: 0.9em; }
+        </style>
+    </h:head>
+    <h:body>
+        <h1>Gestión de Clientes</h1>
+
+        <h:form id="formCliente">
+            <h:messages globalOnly="true" showDetail="false" />
+
+            <h2>Nuevo / Editar Cliente</h2>
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputLabel for="nombre" value="Nombre:" />
+                <h:panelGroup rendered="#{not empty clienteBean.clienteSeleccionado}">
+                    <h:inputText id="nombre" required="true"
+                                 value="#{clienteBean.clienteSeleccionado.nombre}" />
+                    <h:message for="nombre" styleClass="error-message" />
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{empty clienteBean.clienteSeleccionado}">
+                    <h:commandButton value="Nuevo" action="#{clienteBean.nuevoCliente}" />
+                </h:panelGroup>
+                <h:panelGroup rendered="#{not empty clienteBean.clienteSeleccionado}">
+                    <h:commandButton value="Guardar" action="#{clienteBean.guardar}" />
+                    <h:commandButton value="Cancelar" action="#{clienteBean.cancelar}" />
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:form>
+
+        <h:form>
+            <h2>Clientes registrados</h2>
+            <h:dataTable value="#{clienteBean.clientes}" var="c" border="1" cellpadding="4">
+                <h:column>
+                    <f:facet name="header">Código</f:facet>
+                    #{c.codigo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                    #{c.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Acciones</f:facet>
+                    <h:commandButton value="Editar" action="#{clienteBean.seleccionar(c)}" />
+                    <h:commandButton value="Eliminar"
+                                     action="#{clienteBean.eliminar(c)}"
+                                     onclick="return confirm('¿Eliminar el cliente #{c.nombre}?');" />
+                </h:column>
+            </h:dataTable>
+            <p><h:commandLink value="Volver" action="index.xhtml" /></p>
+        </h:form>
+    </h:body>
+</html>
