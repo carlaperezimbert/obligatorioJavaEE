@@ -24,7 +24,7 @@ public class CanchaService {
         em.merge(cancha);
     }
 
-    public void eliminarCancha(Long codigo) {
+    public void eliminarCancha(int codigo) {
     Cancha cancha = em.find(Cancha.class, codigo);
     if (cancha != null) {
         // Validamos si tiene reservas asociadas
@@ -38,7 +38,7 @@ public class CanchaService {
     }
 }
 
-    public Cancha buscarPorId(Long id) {
+    public Cancha buscarPorId(int id) {
         return em.find(Cancha.class, id);
     }
 

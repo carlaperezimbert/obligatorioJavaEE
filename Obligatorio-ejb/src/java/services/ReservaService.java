@@ -29,14 +29,14 @@ public class ReservaService {
         em.merge(reserva);
     }
 
-    public void eliminar(Long id) {
+    public void eliminar(int id) {
         Reserva reserva = em.find(Reserva.class, id);
         if (reserva != null) {
             em.remove(reserva);
         }
     }
 
-    public Reserva buscarPorId(Long id) {
+    public Reserva buscarPorId(int id) {
         return em.find(Reserva.class, id);
     }
 
@@ -45,8 +45,8 @@ public class ReservaService {
     }
     
     // Ejemplo de consulta personalizada útil para reservas: buscar por cliente
-    public List<Reserva> listarPorCliente(Long clienteId) {
-        return em.createQuery("SELECT r FROM Reserva r WHERE r.cliente.id = :clienteId", Reserva.class)
+    public List<Reserva> listarPorCliente(int clienteId) {
+        return em.createQuery("SELECT r FROM Reserva r WHERE r.cliente.codigo = :clienteId", Reserva.class)
                  .setParameter("clienteId", clienteId)
                  .getResultList();
     }

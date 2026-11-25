@@ -28,7 +28,7 @@ public class ClienteService {
     }
 
     // 3. ELIMINAR un cliente por su ID
-    public void eliminar(Long codigo) {
+    public void eliminar(int codigo) {
     Cliente cliente = em.find(Cliente.class, codigo);
     if (cliente != null) {
         // Consultamos si el cliente tiene reservas asociadas
@@ -48,7 +48,7 @@ public class ClienteService {
 } 
 
     // 4. BUSCAR un cliente por su ID único
-    public Cliente buscarPorId(Long id) {
+    public Cliente buscarPorId(int id) {
         return em.find(Cliente.class, id);
     }
 
