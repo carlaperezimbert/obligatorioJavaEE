@@ -4,9 +4,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Canchas</title>
-        <style>
-            .error-message { color: red; font-size: 0.9em; }
-        </style>
+        <link rel="stylesheet" href="resources/css/estilo.css" />
     </h:head>
     <h:body>
         <h1>Gestión de Canchas</h1>
@@ -42,7 +40,7 @@
 
         <h:form>
             <h2>Canchas registradas</h2>
-            <h:dataTable value="#{canchaBean.canchas}" var="c" border="1" cellpadding="4">
+            <h:dataTable value="#{canchaBean.canchas}" var="c" styleClass="tabla-datos">
                 <h:column>
                     <f:facet name="header">Código</f:facet>
                     #{c.codigo}

@@ -1,4 +1,27 @@
-/Obligatorio-war/build/
-/Obligatorio-war/dist/
-/build/
-/dist/
+# NetBeans - archivos privados y generados
+nbproject/private/
+nbproject/genfiles.properties
+nbproject/build-impl.xml
+nbproject/ant-deploy.xml
+
+# Salidas de compilación y empaquetado
+build/
+dist/
+
+# Java
+*.class
+*.jar.pack
+*.war
+*.ear
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# SO
+Thumbs.db
+.DS_Store

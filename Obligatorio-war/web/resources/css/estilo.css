@@ -1,0 +1,120 @@
+/* Paleta azul - Complejo Deportivo */
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f0f6ff;
+    color: #1f2937;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #0d47a1;
+    border-bottom: 3px solid #1565c0;
+    padding-bottom: 8px;
+}
+
+h2 {
+    color: #1565c0;
+    margin-top: 0;
+}
+
+/* Formularios y secciones */
+form {
+    background-color: #ffffff;
+    border: 1px solid #dbe7f5;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 4px rgba(13, 71, 161, 0.08);
+}
+
+/* Botones */
+input[type="submit"] {
+    background-color: #1565c0;
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    margin: 2px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0d47a1;
+}
+
+/* Links */
+a {
+    color: #1565c0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0d47a1;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="date"],
+select {
+    padding: 6px 8px;
+    border: 1px solid #b9cbe0;
+    border-radius: 5px;
+    font-size: 0.95em;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: #1565c0;
+    box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.2);
+}
+
+/* Tablas de datos */
+table.tabla-datos {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #dbe7f5;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(13, 71, 161, 0.12);
+}
+
+table.tabla-datos th {
+    background-color: #1565c0;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+}
+
+table.tabla-datos td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #dbe7f5;
+}
+
+table.tabla-datos tr:nth-child(even) {
+    background-color: #eef4fb;
+}
+
+table.tabla-datos tr:hover {
+    background-color: #dce9f7;
+}
+
+/* Mensajes */
+.error-message {
+    color: #c62828;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.ok-message {
+    color: #2e7d32;
+    font-size: 0.9em;
+}

@@ -4,9 +4,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Reservas</title>
-        <style>
-            .error-message { color: red; font-size: 0.9em; }
-        </style>
+        <link rel="stylesheet" href="resources/css/estilo.css" />
     </h:head>
     <h:body>
         <h1>Gestión de Reservas</h1>
@@ -94,7 +92,7 @@
 
         <h:form>
             <h2>Reservas registradas</h2>
-            <h:dataTable value="#{reservaBean.reservas}" var="r" border="1" cellpadding="4">
+            <h:dataTable value="#{reservaBean.reservas}" var="r" styleClass="tabla-datos">
                 <h:column>
                     <f:facet name="header">Código</f:facet>
                     #{r.codigo}
